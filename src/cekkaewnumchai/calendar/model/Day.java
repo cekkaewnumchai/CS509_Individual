@@ -6,7 +6,8 @@ public enum Day {
    static Day getDayFromId(int id) {
       return Day.values()[id - 1];
    }
-   public static String fullName(Day day){
+
+   static String fullName(Day day){
       switch(day) {
          case MON: return "Monday";
          case TUE: return "Tuesday";
@@ -19,7 +20,7 @@ public enum Day {
       }
    }
 
-   public static String shortName(Day day){
+   static String shortName(Day day){
       switch(day) {
          case MON: return "Mon";
          case TUE: return "Tue";
