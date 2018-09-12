@@ -1,3 +1,2 @@
-# cs509_individual
-
-This git is used for storing inidvidual project for wpi/cs509
+# CS509_Individual
+Individual Project for CS509
