@@ -8,11 +8,9 @@ import java.time.YearMonth;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.SortedMap;
-import java.util.SortedSet;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
-class Calendar {
+public class Calendar {
 	String name;
 	SortedMap<LocalDateTime, String> freeSlots, reservedSlots;
 	// NOTE: end hour is excluded at the end
@@ -36,8 +34,7 @@ class Calendar {
 		this.reservedSlots = new TreeMap<>();
 		this.duration = duration;
 		this.startTime = LocalTime.of(earlyHour, 0);
-		this.endTime =
-			LocalTime.of(earlyHour <= latestHour ? latestHour + 1 : earlyHour, 0);
+		this.endTime = LocalTime.of(latestHour, 0).plusHours(1);
 
 		for (	LocalDate date = startDate;
 				date.compareTo(endDate) <= 0;

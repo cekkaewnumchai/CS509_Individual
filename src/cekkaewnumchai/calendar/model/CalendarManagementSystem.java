@@ -1,10 +1,16 @@
 package cekkaewnumchai.calendar.model;
 
 import java.time.LocalDate;
+import java.util.Iterator;
 import java.util.SortedMap;
+import java.util.TreeMap;
 
 public class CalendarManagementSystem {
 	private SortedMap<String, Calendar> calendars;
+	
+	public CalendarManagementSystem() {
+		calendars = new TreeMap<>();
+	}
 
 	// 1
 	public boolean createCalendar(String name, LocalDate startDate,
@@ -29,5 +35,9 @@ public class CalendarManagementSystem {
 	// 3
 	public Calendar getCalendar(String name) {
 		return calendars.get(name);
+	}
+	
+	public Iterator<String> getCalendarNames() {
+		return calendars.keySet().iterator();
 	}
 }
