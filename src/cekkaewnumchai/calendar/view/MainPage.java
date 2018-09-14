@@ -2,10 +2,13 @@ package cekkaewnumchai.calendar.view;
 
 import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.JLabel;
 import javax.swing.JList;
 
 import cekkaewnumchai.calendar.controller.AddCalendarController;
+import cekkaewnumchai.calendar.controller.DeleteCalendarController;
 import cekkaewnumchai.calendar.model.CalendarManagementSystem;
 
 import java.awt.event.ActionEvent;
@@ -69,7 +72,14 @@ public class MainPage extends JPanel {
 		
 		btnDeleteCalendar = new JButton("Delete Calendar");
 		btnDeleteCalendar.setBounds(299, 261, 125, 23);
+		btnDeleteCalendar.setEnabled(false);
 		add(btnDeleteCalendar);
+		btnDeleteCalendar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new DeleteCalendarController(model, MainPage.this).process();
+			}
+		});
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 33, 415, 217);
@@ -84,6 +94,12 @@ public class MainPage extends JPanel {
 		calendarList.setModel(listModel);
 		calendarList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPane.setViewportView(calendarList);
+		calendarList.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				btnDeleteCalendar.setEnabled(calendarList.getSelectedIndex() >= 0);
+			}
+		});
 
 	}
 }
