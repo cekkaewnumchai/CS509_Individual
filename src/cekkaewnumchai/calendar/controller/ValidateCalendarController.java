@@ -5,12 +5,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import cekkaewnumchai.calendar.view.AddingCalendarPage;
+import cekkaewnumchai.calendar.view.AddCalendarPage;
 
 public class ValidateCalendarController {
-	AddingCalendarPage page;
+	AddCalendarPage page;
 
-	public ValidateCalendarController(AddingCalendarPage page) {
+	public ValidateCalendarController(AddCalendarPage page) {
 		this.page = page;
 	}
 

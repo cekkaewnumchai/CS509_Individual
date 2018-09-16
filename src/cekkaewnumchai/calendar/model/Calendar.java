@@ -34,7 +34,7 @@ public class Calendar {
 		this.reservedSlots = new TreeMap<>();
 		this.duration = duration;
 		this.startTime = LocalTime.of(earlyHour, 0);
-		this.endTime = LocalTime.of(latestHour, 0).plusHours(1);
+		this.endTime = LocalTime.of(latestHour, 59);
 
 		for (	LocalDate date = startDate;
 				date.compareTo(endDate) <= 0;
@@ -46,13 +46,15 @@ public class Calendar {
 				continue;
 
 			// expect earlyHour to be less than latestHour
-			if (earlyHour < latestHour)
+			if (earlyHour > latestHour)
 				break;
 
 			for (	LocalTime time = startTime;
 					time.compareTo(endTime) < 0;
 					time = time.plusMinutes(duration)) {
 				freeSlots.put(date.atTime(time), "");
+				if(time.compareTo(time.plusMinutes(duration)) > 0)
+					break;
 			}
 		}
 	}
@@ -69,6 +71,8 @@ public class Calendar {
 				time.compareTo(endTime) <= 0;
 				time = time.plusMinutes(duration)) {
 			freeSlots.put(date.atTime(time), "");
+			if(time.compareTo(time.plusMinutes(duration)) > 0)
+				break;
 		}
 		return true;
 	}
@@ -155,9 +159,17 @@ public class Calendar {
 		return slots.entrySet().iterator();
 	}
 
+	public Iterator<LocalDateTime> getFreeSlots() {
+		return freeSlots.keySet().iterator();
+	}
+
 	////////////////////////////////////////////////////////////////////////////
 	// Helper
 	private LocalDateTime atStartOfMonth(YearMonth yearMonth) {
 		return yearMonth.atDay(1).atStartOfDay();
+	}
+
+	public static boolean validate() {
+		return true;
 	}
 }

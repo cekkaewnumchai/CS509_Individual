@@ -15,7 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JButton;
 
-public class AddingCalendarPage extends JDialog {
+public class AddCalendarPage extends JDialog {
 
 	private JPanel contentPane;
 	private JTextField textFieldName;
@@ -68,7 +68,7 @@ public class AddingCalendarPage extends JDialog {
 	/**
 	 * Create the frame.
 	 */
-	public AddingCalendarPage() {
+	public AddCalendarPage() {
 		setBounds(100, 100, 264, 325);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -137,10 +137,10 @@ public class AddingCalendarPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				if (new ValidateCalendarController(AddingCalendarPage.this)
+				if (new ValidateCalendarController(AddCalendarPage.this)
 					.validate()) {
 					updated = true;
-					AddingCalendarPage.this.setVisible(false);
+					AddCalendarPage.this.setVisible(false);
 				}
 			}
 		});
@@ -152,7 +152,7 @@ public class AddingCalendarPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				updated = false;
-				AddingCalendarPage.this.setVisible(false);
+				AddCalendarPage.this.setVisible(false);
 			}
 		});
 	}

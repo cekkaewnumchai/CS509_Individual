@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import cekkaewnumchai.calendar.model.CalendarManagementSystem;
-import cekkaewnumchai.calendar.view.AddingCalendarPage;
+import cekkaewnumchai.calendar.view.AddCalendarPage;
 import cekkaewnumchai.calendar.view.MainPage;
 
 public class AddCalendarController extends CalendarController {
@@ -15,7 +15,7 @@ public class AddCalendarController extends CalendarController {
 	}
 
 	public void process() {
-		AddingCalendarPage page = new AddingCalendarPage();
+		AddCalendarPage page = new AddCalendarPage();
 		page.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		page.setVisible(true);
 

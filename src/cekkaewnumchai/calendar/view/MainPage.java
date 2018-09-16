@@ -9,6 +9,7 @@ import javax.swing.JList;
 
 import cekkaewnumchai.calendar.controller.AddCalendarController;
 import cekkaewnumchai.calendar.controller.DeleteCalendarController;
+import cekkaewnumchai.calendar.controller.LoadCalendarController;
 import cekkaewnumchai.calendar.model.CalendarManagementSystem;
 
 import java.awt.event.ActionEvent;
@@ -68,7 +69,14 @@ public class MainPage extends JPanel {
 		
 		btnLoadCalendar = new JButton("Load Calendar");
 		btnLoadCalendar.setBounds(155, 261, 125, 23);
+		btnLoadCalendar.setEnabled(false);
 		add(btnLoadCalendar);
+		btnLoadCalendar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new LoadCalendarController(model, MainPage.this).process();
+			}
+		});
 		
 		btnDeleteCalendar = new JButton("Delete Calendar");
 		btnDeleteCalendar.setBounds(299, 261, 125, 23);
@@ -97,7 +105,9 @@ public class MainPage extends JPanel {
 		calendarList.addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
-				btnDeleteCalendar.setEnabled(calendarList.getSelectedIndex() >= 0);
+				boolean enable = calendarList.getSelectedIndex() >= 0;
+				btnDeleteCalendar.setEnabled(enable);
+				btnLoadCalendar.setEnabled(enable);
 			}
 		});
 
