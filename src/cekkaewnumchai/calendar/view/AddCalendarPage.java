@@ -136,7 +136,6 @@ public class AddCalendarPage extends JDialog {
 		btnConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
 				if (new ValidateCalendarController(AddCalendarPage.this)
 					.validate()) {
 					updated = true;

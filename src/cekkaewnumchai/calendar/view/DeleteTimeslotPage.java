@@ -76,29 +76,13 @@ public class DeleteTimeslotPage extends JDialog {
 				}
 				btnDelete.setEnabled(enabled);
 			}
-
 			@Override
 			public void insertUpdate(DocumentEvent arg) {
-				boolean enabled = false;
-				try {
-					Document doc = arg.getDocument();
-					enabled = validateDate(doc.getText(0, doc.getLength()));
-				} catch (Exception e) {
-					enabled = false;
-				}
-				btnDelete.setEnabled(enabled);
+				changedUpdate(arg);
 			}
-
 			@Override
 			public void removeUpdate(DocumentEvent arg) {
-				boolean enabled = false;
-				try {
-					Document doc = arg.getDocument();
-					enabled = validateDate(doc.getText(0, doc.getLength()));
-				} catch (Exception e) {
-					enabled = false;
-				}
-				btnDelete.setEnabled(enabled);
+				changedUpdate(arg);
 			}
 		});
 	}

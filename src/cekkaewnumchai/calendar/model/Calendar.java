@@ -150,7 +150,12 @@ public class Calendar {
 
 	// 8
 	public boolean cancelDateTime(LocalDateTime dateTime) {
-		return reservedSlots.remove(dateTime) != null;
+		if (reservedSlots.remove(dateTime) != null) {
+			freeSlots.put(dateTime, "");
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	// 9
@@ -178,6 +183,10 @@ public class Calendar {
 
 	public Iterator<LocalDateTime> getFreeSlots() {
 		return freeSlots.keySet().iterator();
+	}
+
+	public Iterator<Map.Entry<LocalDateTime, String>> getReservedSlots() {
+		return reservedSlots.entrySet().iterator();
 	}
 
 	////////////////////////////////////////////////////////////////////////////
