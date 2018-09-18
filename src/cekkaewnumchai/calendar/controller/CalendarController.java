@@ -16,7 +16,7 @@ public abstract class CalendarController {
 		this.mainPage = mp;
 	}
 
-	public void updateCalendarListView() {
+	void updateCalendarListView() {
 		DefaultListModel<String> nameListModel =
 			(DefaultListModel<String>) (mainPage.getCalendarNameList()
 				.getModel());

@@ -53,7 +53,7 @@ public class Calendar {
 					time.compareTo(endTime) < 0;
 					time = time.plusMinutes(duration)) {
 				freeSlots.put(date.atTime(time), "");
-				if(time.compareTo(time.plusMinutes(duration)) > 0)
+				if (time.compareTo(time.plusMinutes(duration)) > 0)
 					break;
 			}
 		}
@@ -71,8 +71,24 @@ public class Calendar {
 				time.compareTo(endTime) <= 0;
 				time = time.plusMinutes(duration)) {
 			freeSlots.put(date.atTime(time), "");
-			if(time.compareTo(time.plusMinutes(duration)) > 0)
+			if (time.compareTo(time.plusMinutes(duration)) > 0)
 				break;
+		}
+		return true;
+	}
+
+	// 5
+	public boolean deleteDate(LocalDate date) {
+		// remove free slots
+		removeDate(date);
+
+		// remove reserved slots
+		Iterator<Map.Entry<LocalDateTime, String>> it =
+			reservedSlots.entrySet().iterator();
+		while (it.hasNext()) {
+			LocalDateTime slot = it.next().getKey();
+			if (slot.toLocalDate().equals(date))
+				it.remove();
 		}
 		return true;
 	}
@@ -88,19 +104,20 @@ public class Calendar {
 			freeSlots.entrySet().iterator();
 		while (it.hasNext()) {
 			LocalDateTime slot = it.next().getKey();
-			if (slot.getDayOfWeek() == weekday && slot.toLocalTime() == time)
+			if (slot.getDayOfWeek().equals(weekday) &&
+					slot.toLocalTime().equals(time))
 				it.remove();
 		}
 		return true;
 	}
 
-	// 6c, 5
-	public boolean removeDay(LocalDate date) {
+	// 6c
+	public boolean removeDate(LocalDate date) {
 		Iterator<Map.Entry<LocalDateTime, String>> it =
 			freeSlots.entrySet().iterator();
 		while (it.hasNext()) {
 			LocalDateTime slot = it.next().getKey();
-			if (slot.toLocalDate() == date)
+			if (slot.toLocalDate().equals(date))
 				it.remove();
 		}
 		return true;
@@ -112,7 +129,7 @@ public class Calendar {
 			freeSlots.entrySet().iterator();
 		while (it.hasNext()) {
 			LocalDateTime slot = it.next().getKey();
-			if (slot.toLocalTime() == time)
+			if (slot.toLocalTime().equals(time))
 				it.remove();
 		}
 		return true;

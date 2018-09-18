@@ -14,6 +14,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import cekkaewnumchai.calendar.controller.AddTimeslotController;
+import cekkaewnumchai.calendar.controller.CloseTimeslotController;
+import cekkaewnumchai.calendar.controller.DeleteTimeslotController;
 import cekkaewnumchai.calendar.model.Calendar;
 import cekkaewnumchai.calendar.model.CalendarManagementSystem;
 
@@ -32,6 +34,10 @@ public class CalendarPage extends JPanel {
 	
 	public JList<String> getSlotList() {
 		return slotList;
+	}
+	
+	public JTextField getMeetingNameField() {
+		return textFieldMeetingName;
 	}
 	
 	/**
@@ -76,22 +82,49 @@ public class CalendarPage extends JPanel {
 		JButton btnCloseTimeslots = new JButton("Close Timeslots");
 		btnCloseTimeslots.setBounds(285, 83, 136, 23);
 		add(btnCloseTimeslots);
+		btnCloseTimeslots.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new CloseTimeslotController(calendar, CalendarPage.this).process();
+			}		
+		});
+		
 		
 		textFieldMeetingName = new JTextField();
-		textFieldMeetingName.setBounds(285, 141, 136, 20);
+		textFieldMeetingName.setBounds(285, 131, 136, 20);
 		add(textFieldMeetingName);
 		textFieldMeetingName.setColumns(10);
 		
 		JLabel lblMeetingName = new JLabel("Meeting Name");
-		lblMeetingName.setBounds(285, 127, 137, 14);
+		lblMeetingName.setBounds(285, 117, 137, 14);
 		add(lblMeetingName);
 		
 		JButton btnScheduleMeeting = new JButton("Schedule Meeting");
-		btnScheduleMeeting.setBounds(285, 163, 136, 23);
+		btnScheduleMeeting.setBounds(285, 153, 136, 23);
 		add(btnScheduleMeeting);
 		
-		JButton btnCalcelMeeting = new JButton("Cancel Meeting");
-		btnCalcelMeeting.setBounds(285, 206, 136, 23);
-		add(btnCalcelMeeting);
+		JButton btnCancelMeeting = new JButton("Cancel Meeting");
+		btnCancelMeeting.setBounds(285, 187, 136, 23);
+		add(btnCancelMeeting);
+		btnCancelMeeting.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new CloseTimeslotController(calendar, CalendarPage.this).process();
+			}		
+		});
+		
+		JButton btnDeleteDate = new JButton("Delete Date");
+		btnDeleteDate.setBounds(285, 221, 136, 23);
+		add(btnDeleteDate);
+		btnDeleteDate.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new DeleteTimeslotController(calendar, CalendarPage.this).process();
+			}		
+		});
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.setBounds(285, 266, 136, 23);
+		add(btnBack);
 	}
 }
