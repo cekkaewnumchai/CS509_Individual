@@ -5,10 +5,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
+
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 
 public class Calendar {
 	String name;
@@ -57,6 +63,52 @@ public class Calendar {
 					break;
 			}
 		}
+	}
+
+	public Calendar(String name, LocalTime startTime, LocalTime endTime,
+		int duration, SortedMap<LocalDateTime, String> freeSlots,
+		SortedMap<LocalDateTime, String> reservedSlots) {
+		this.name = name;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.duration = duration;
+		this.freeSlots = freeSlots;
+		this.reservedSlots = reservedSlots;
+	}
+
+	JsonValue genJsonValue() {
+		JsonObjectBuilder builder = Json.createObjectBuilder();
+		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+		DateTimeFormatter dateTimeFormatter =
+			DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm");
+
+		builder.add("name", name);
+
+		builder.add("startTime", startTime.format(timeFormatter));
+
+		builder.add("endTime", endTime.format(timeFormatter));
+
+		builder.add("duration", duration);
+
+		JsonArrayBuilder freeBuilder = Json.createArrayBuilder();
+		Iterator<LocalDateTime> freeIt = getFreeSlots();
+		while (freeIt.hasNext()) {
+			freeBuilder.add(freeIt.next().format(dateTimeFormatter));
+		}
+		builder.add("freeSlots", freeBuilder);
+
+		JsonArrayBuilder reservedBuilder = Json.createArrayBuilder();
+		Iterator<Map.Entry<LocalDateTime, String>> reservedIt =
+			getReservedSlots();
+		while (reservedIt.hasNext()) {
+			Map.Entry<LocalDateTime, String> entry = reservedIt.next();
+			reservedBuilder.add(Json.createObjectBuilder()
+				.add("meetingName", entry.getValue())
+				.add("dateTime", entry.getKey().format(dateTimeFormatter)));
+		}
+		builder.add("reservedSlots", reservedBuilder);
+
+		return builder.build();
 	}
 
 	// 4
