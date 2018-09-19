@@ -49,6 +49,7 @@ public class CancelTimeslotPage extends JDialog {
 		JButton btnCancel = new JButton("Cancel");
 		btnCancel.setBounds(10, 232, 89, 23);
 		getContentPane().add(btnCancel);
+		btnCancel.setEnabled(false);
 		btnCancel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
