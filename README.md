@@ -18,4 +18,4 @@ Chaiwat Ekkaewnumchai Individual Project for CS509
 		- (b) -> choose weekday and fill valid date
 		- (c) -> fill valid date
 		- (d) -> fill valid time
-	The case will be considered from (a) to (d). For example, in case of filling all, case (a) will be chosen. In case of filling date and weekday, case (c) will be chosen.
+		- Note: The case will be considered from (a) to (d). For example, in case of filling all, case (a) will be chosen. In case of filling date and weekday, case (c) will be chosen.
