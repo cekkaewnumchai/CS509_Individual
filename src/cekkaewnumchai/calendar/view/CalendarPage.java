@@ -19,10 +19,13 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.text.Document;
 
 import cekkaewnumchai.calendar.controller.AddTimeslotController;
+import cekkaewnumchai.calendar.controller.BackToCalendarController;
 import cekkaewnumchai.calendar.controller.CancelTimeslotController;
 import cekkaewnumchai.calendar.controller.CloseTimeslotController;
 import cekkaewnumchai.calendar.controller.DeleteTimeslotController;
 import cekkaewnumchai.calendar.controller.ScheduleTimeslotController;
+import cekkaewnumchai.calendar.controller.ShowDailyTimeslotController;
+import cekkaewnumchai.calendar.controller.ShowMonthlyTimeslotController;
 import cekkaewnumchai.calendar.model.Calendar;
 import cekkaewnumchai.calendar.model.CalendarManagementSystem;
 
@@ -61,11 +64,11 @@ public class CalendarPage extends JPanel {
 		add(lblFreeSlots);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 36, 265, 253);
+		scrollPane.setBounds(10, 36, 265, 308);
 		add(scrollPane);
 
 		JButton btnScheduleMeeting = new JButton("Schedule Meeting");
-		btnScheduleMeeting.setBounds(285, 153, 136, 23);
+		btnScheduleMeeting.setBounds(285, 140, 136, 23);
 		add(btnScheduleMeeting);
 		btnScheduleMeeting.setEnabled(false);
 		btnScheduleMeeting.addActionListener(new ActionListener() {
@@ -95,7 +98,7 @@ public class CalendarPage extends JPanel {
 		});
 
 		JButton btnAddTimeslots = new JButton("Add Timeslots");
-		btnAddTimeslots.setBounds(285, 49, 136, 23);
+		btnAddTimeslots.setBounds(285, 36, 136, 23);
 		add(btnAddTimeslots);
 		btnAddTimeslots.addActionListener(new ActionListener() {
 			@Override
@@ -105,7 +108,7 @@ public class CalendarPage extends JPanel {
 		});
 
 		JButton btnCloseTimeslots = new JButton("Close Timeslots");
-		btnCloseTimeslots.setBounds(285, 83, 136, 23);
+		btnCloseTimeslots.setBounds(285, 70, 136, 23);
 		add(btnCloseTimeslots);
 		btnCloseTimeslots.addActionListener(new ActionListener() {
 			@Override
@@ -115,11 +118,11 @@ public class CalendarPage extends JPanel {
 		});
 
 		JLabel lblMeetingName = new JLabel("Meeting Name");
-		lblMeetingName.setBounds(285, 117, 137, 14);
+		lblMeetingName.setBounds(285, 104, 137, 14);
 		add(lblMeetingName);
 
 		textFieldMeetingName = new JTextField();
-		textFieldMeetingName.setBounds(285, 131, 136, 20);
+		textFieldMeetingName.setBounds(285, 118, 136, 20);
 		add(textFieldMeetingName);
 		textFieldMeetingName.setColumns(10);
 		textFieldMeetingName.getDocument()
@@ -141,7 +144,7 @@ public class CalendarPage extends JPanel {
 			});
 
 		JButton btnCancelMeeting = new JButton("Cancel Meeting");
-		btnCancelMeeting.setBounds(285, 187, 136, 23);
+		btnCancelMeeting.setBounds(285, 174, 136, 23);
 		add(btnCancelMeeting);
 		btnCancelMeeting.addActionListener(new ActionListener() {
 			@Override
@@ -151,7 +154,7 @@ public class CalendarPage extends JPanel {
 		});
 
 		JButton btnDeleteDate = new JButton("Delete Date");
-		btnDeleteDate.setBounds(285, 221, 136, 23);
+		btnDeleteDate.setBounds(285, 208, 136, 23);
 		add(btnDeleteDate);
 		btnDeleteDate.addActionListener(new ActionListener() {
 			@Override
@@ -161,8 +164,37 @@ public class CalendarPage extends JPanel {
 		});
 
 		JButton btnBack = new JButton("Back");
-		btnBack.setBounds(285, 266, 136, 23);
+		btnBack.setBounds(285, 321, 136, 23);
 		add(btnBack);
+		btnBack.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new BackToCalendarController(cms, calendar, CalendarPage.this)
+					.process();
+			}
+		});
+		
+		JButton btnShowDaily = new JButton("Show Daily");
+		btnShowDaily.setBounds(285, 242, 136, 23);
+		add(btnShowDaily);
+		btnShowDaily.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new ShowDailyTimeslotController(calendar, CalendarPage.this)
+					.process();
+			}
+		});
+		
+		JButton btnShowMonthly = new JButton("Show Monthly");
+		btnShowMonthly.setBounds(286, 276, 135, 23);
+		add(btnShowMonthly);
+		btnShowMonthly.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new ShowMonthlyTimeslotController(calendar, CalendarPage.this)
+					.process();
+			}
+		});
 	}
 
 	private boolean validateSchedule() {

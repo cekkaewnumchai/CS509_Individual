@@ -58,7 +58,7 @@ public class MainPage extends JPanel {
 		add(label);
 		
 		btnAddCalendar = new JButton("Add Calendar");
-		btnAddCalendar.setBounds(10, 261, 125, 23);
+		btnAddCalendar.setBounds(10, 321, 125, 23);
 		add(btnAddCalendar);
 		btnAddCalendar.addActionListener(new ActionListener() {
 			@Override
@@ -68,7 +68,7 @@ public class MainPage extends JPanel {
 		});
 		
 		btnLoadCalendar = new JButton("Load Calendar");
-		btnLoadCalendar.setBounds(155, 261, 125, 23);
+		btnLoadCalendar.setBounds(156, 321, 125, 23);
 		btnLoadCalendar.setEnabled(false);
 		add(btnLoadCalendar);
 		btnLoadCalendar.addActionListener(new ActionListener() {
@@ -79,7 +79,7 @@ public class MainPage extends JPanel {
 		});
 		
 		btnDeleteCalendar = new JButton("Delete Calendar");
-		btnDeleteCalendar.setBounds(299, 261, 125, 23);
+		btnDeleteCalendar.setBounds(300, 321, 125, 23);
 		btnDeleteCalendar.setEnabled(false);
 		add(btnDeleteCalendar);
 		btnDeleteCalendar.addActionListener(new ActionListener() {
@@ -90,7 +90,7 @@ public class MainPage extends JPanel {
 		});
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 33, 415, 217);
+		scrollPane.setBounds(10, 33, 415, 277);
 		add(scrollPane);
 		
 		calendarList = new JList<String>();

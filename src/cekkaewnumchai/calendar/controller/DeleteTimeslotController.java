@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import cekkaewnumchai.calendar.model.Calendar;
-import cekkaewnumchai.calendar.view.DeleteTimeslotPage;
+import cekkaewnumchai.calendar.view.DateTimeslotPage;
 import cekkaewnumchai.calendar.view.CalendarPage;
 
 public class DeleteTimeslotController extends TimeslotController {
@@ -16,7 +16,7 @@ public class DeleteTimeslotController extends TimeslotController {
 	
 	@Override
 	public void process() {
-		DeleteTimeslotPage page = new DeleteTimeslotPage();
+		DateTimeslotPage page = new DateTimeslotPage();
 		page.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		page.setVisible(true);
 

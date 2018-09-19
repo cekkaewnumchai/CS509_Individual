@@ -1,4 +1,4 @@
-package cekkaewnumchai.calendar.controller;
+package cekkaewnumchai.calendar.view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;

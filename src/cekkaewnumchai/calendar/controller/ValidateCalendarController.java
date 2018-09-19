@@ -3,9 +3,9 @@ package cekkaewnumchai.calendar.controller;
 import java.awt.Dialog;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 import cekkaewnumchai.calendar.view.AddCalendarPage;
+import cekkaewnumchai.calendar.view.ErrorDialog;
 
 public class ValidateCalendarController {
 	AddCalendarPage page;

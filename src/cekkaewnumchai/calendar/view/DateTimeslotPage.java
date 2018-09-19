@@ -13,7 +13,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
 
-public class DeleteTimeslotPage extends JDialog {
+public class DateTimeslotPage extends JDialog {
 	private JTextField textField;
 	boolean updated = false;
 
@@ -28,7 +28,7 @@ public class DeleteTimeslotPage extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public DeleteTimeslotPage() {
+	public DateTimeslotPage() {
 		getContentPane().setLayout(null);
 
 		setBounds(100, 100, 240, 120);
@@ -37,15 +37,15 @@ public class DeleteTimeslotPage extends JDialog {
 		lbldateyyyymmdd.setBounds(10, 11, 89, 28);
 		getContentPane().add(lbldateyyyymmdd);
 
-		JButton btnDelete = new JButton("Delete");
-		btnDelete.setBounds(10, 50, 89, 23);
-		getContentPane().add(btnDelete);
-		btnDelete.setEnabled(false);
-		btnDelete.addActionListener(new ActionListener() {
+		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.setBounds(10, 50, 89, 23);
+		getContentPane().add(btnConfirm);
+		btnConfirm.setEnabled(false);
+		btnConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				updated = true;
-				DeleteTimeslotPage.this.setVisible(false);
+				DateTimeslotPage.this.setVisible(false);
 			}
 		});
 
@@ -56,7 +56,7 @@ public class DeleteTimeslotPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				updated = false;
-				DeleteTimeslotPage.this.setVisible(false);
+				DateTimeslotPage.this.setVisible(false);
 			}
 		});
 
@@ -74,7 +74,7 @@ public class DeleteTimeslotPage extends JDialog {
 				} catch (Exception e) {
 					enabled = false;
 				}
-				btnDelete.setEnabled(enabled);
+				btnConfirm.setEnabled(enabled);
 			}
 			@Override
 			public void insertUpdate(DocumentEvent arg) {

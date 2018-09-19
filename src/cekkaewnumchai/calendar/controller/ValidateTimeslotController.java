@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import cekkaewnumchai.calendar.view.CloseTimeslotPage;
+import cekkaewnumchai.calendar.view.ErrorDialog;
 
 public class ValidateTimeslotController {
 	CloseTimeslotPage page;

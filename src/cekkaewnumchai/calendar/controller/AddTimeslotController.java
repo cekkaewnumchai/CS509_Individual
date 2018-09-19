@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import cekkaewnumchai.calendar.model.Calendar;
-import cekkaewnumchai.calendar.view.AddTimeslotPage;
 import cekkaewnumchai.calendar.view.CalendarPage;
+import cekkaewnumchai.calendar.view.DateTimeslotPage;
 
 public class AddTimeslotController extends TimeslotController {
 	public AddTimeslotController(Calendar calendar, CalendarPage view) {
@@ -15,7 +15,7 @@ public class AddTimeslotController extends TimeslotController {
 
 	@Override
 	public void process() {
-		AddTimeslotPage page = new AddTimeslotPage();
+		DateTimeslotPage page = new DateTimeslotPage();
 		page.setModalityType(Dialog.ModalityType.APPLICATION_MODAL);
 		page.setVisible(true);
 

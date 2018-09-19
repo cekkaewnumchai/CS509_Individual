@@ -3,17 +3,18 @@ package cekkaewnumchai.calendar.view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.Document;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
-public class AddTimeslotPage extends JDialog {
+public class MonthTimeslotPage extends JDialog {
 	private JTextField textField;
 	boolean updated = false;
 
@@ -28,24 +29,24 @@ public class AddTimeslotPage extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public AddTimeslotPage() {
+	public MonthTimeslotPage() {
 		getContentPane().setLayout(null);
 
 		setBounds(100, 100, 240, 120);
 
-		JLabel lbldateyyyymmdd = new JLabel("<html>Date (YYYY/MM/DD)</html>");
+		JLabel lbldateyyyymmdd = new JLabel("<html>Month (YYYY/MM)</html>");
 		lbldateyyyymmdd.setBounds(10, 11, 89, 28);
 		getContentPane().add(lbldateyyyymmdd);
 
-		JButton btnAdd = new JButton("Add");
-		btnAdd.setBounds(10, 50, 89, 23);
-		getContentPane().add(btnAdd);
-		btnAdd.setEnabled(false);
-		btnAdd.addActionListener(new ActionListener() {
+		JButton btnConfirm = new JButton("Confirm");
+		btnConfirm.setBounds(10, 50, 89, 23);
+		getContentPane().add(btnConfirm);
+		btnConfirm.setEnabled(false);
+		btnConfirm.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				updated = true;
-				AddTimeslotPage.this.setVisible(false);
+				MonthTimeslotPage.this.setVisible(false);
 			}
 		});
 
@@ -56,7 +57,7 @@ public class AddTimeslotPage extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				updated = false;
-				AddTimeslotPage.this.setVisible(false);
+				MonthTimeslotPage.this.setVisible(false);
 			}
 		});
 
@@ -74,31 +75,15 @@ public class AddTimeslotPage extends JDialog {
 				} catch (Exception e) {
 					enabled = false;
 				}
-				btnAdd.setEnabled(enabled);
+				btnConfirm.setEnabled(enabled);
 			}
-
 			@Override
 			public void insertUpdate(DocumentEvent arg) {
-				boolean enabled = false;
-				try {
-					Document doc = arg.getDocument();
-					enabled = validateDate(doc.getText(0, doc.getLength()));
-				} catch (Exception e) {
-					enabled = false;
-				}
-				btnAdd.setEnabled(enabled);
+				changedUpdate(arg);
 			}
-
 			@Override
 			public void removeUpdate(DocumentEvent arg) {
-				boolean enabled = false;
-				try {
-					Document doc = arg.getDocument();
-					enabled = validateDate(doc.getText(0, doc.getLength()));
-				} catch (Exception e) {
-					enabled = false;
-				}
-				btnAdd.setEnabled(enabled);
+				changedUpdate(arg);
 			}
 		});
 	}
@@ -106,11 +91,12 @@ public class AddTimeslotPage extends JDialog {
 	private boolean validateDate(String text) {
 		try {
 			DateTimeFormatter formatter =
-				DateTimeFormatter.ofPattern("yyyy/MM/dd");
-			LocalDate.parse(text, formatter);
+				DateTimeFormatter.ofPattern("yyyy/MM");
+			YearMonth.parse(text, formatter);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
+
 }
