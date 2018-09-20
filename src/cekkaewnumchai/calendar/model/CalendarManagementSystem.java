@@ -100,7 +100,6 @@ public class CalendarManagementSystem {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 			cms = new CalendarManagementSystem();
 		}
 		
@@ -126,7 +125,7 @@ public class CalendarManagementSystem {
 			writer.write("\n");
 			writer.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			
 		}
 	}
 
